@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import fs from "fs";
 import ora from "ora";
 import synchronizedPrettier from "@prettier/sync";
+import toCamelCase from "lodash.camelcase";
 
 const spinner = ora("Creating component...");
 
@@ -14,8 +15,8 @@ const questions = [
       const isValidDir = !fs.existsSync(`./src/components/${answer}`);
       const isValidName = !!answer.trim();
 
-      if (!isValidName) return 'Invalid component name';
-      if (!isValidDir) return 'Component already exists';
+      if (!isValidName) return "Invalid component name";
+      if (!isValidDir) return "Component already exists";
 
       return true;
     },
@@ -33,14 +34,14 @@ inquirer
   .then(async (answers) => {
     console.clear();
     spinner.start();
-    
-    fs.mkdirSync(`./src/components/${answers.name}`)
+
+    fs.mkdirSync(`./src/components/${answers.name}`);
 
     const mainContent = `
-      ${answers.scss ? `import "./${answers.name}.scss";`: ''}
+      ${answers.scss ? `import "./${answers.name}.scss";` : ""}
 
       function ${answers.name}() {
-        return <div${answers.scss ? ` className="${answers.name}"`: ''}>${answers.name}</div>;
+        return <div${answers.scss ? ` className="${toCamelCase(answers.name)}"` : ""}>${answers.name}</div>;
       }
 
       export default ${answers.name};
@@ -53,38 +54,38 @@ inquirer
     `;
 
     if (answers.scss) {
-      const scssFormattedContent = synchronizedPrettier.format(`.${answers.name}{}`, { parser: "scss" });
-      
-      fs.writeFileSync(`./src/components/${answers.name}/${answers.name}.scss`, scssFormattedContent);
+      const scssFormattedContent = synchronizedPrettier.format(
+        `.${toCamelCase(answers.name)}{}`,
+        { parser: "scss" }
+      );
+
+      fs.writeFileSync(
+        `./src/components/${answers.name}/${answers.name}.scss`,
+        scssFormattedContent
+      );
     }
 
-    
-    const mainFormattedContent = synchronizedPrettier.format(mainContent, { parser: "babel" });
-    fs.writeFileSync(`./src/components/${answers.name}/${answers.name}.tsx`, mainFormattedContent);
+    const mainFormattedContent = synchronizedPrettier.format(mainContent, {
+      parser: "babel",
+    });
+    fs.writeFileSync(
+      `./src/components/${answers.name}/${answers.name}.tsx`,
+      mainFormattedContent
+    );
 
-
-    const indexFormattedContent = synchronizedPrettier.format(indexContent, { parser: "babel" });
-    fs.writeFileSync(`./src/components/${answers.name}/index.ts`, indexFormattedContent);
+    const indexFormattedContent = synchronizedPrettier.format(indexContent, {
+      parser: "babel",
+    });
+    fs.writeFileSync(
+      `./src/components/${answers.name}/index.ts`,
+      indexFormattedContent
+    );
 
     setTimeout(() => {
-      spinner.succeed('Done!')
+      spinner.succeed("Done!");
     }, 2000);
-
-    // .writeFile("./src/components/test.js", "test")
-    // console.log(answers);
-
-    // await oraPromise(new Promise().then( ), )
-    // await oraPromise(
-    //   fs
-    //     .writeFile("./src/components/test.js", "test")
-    //     .then(() => {})
-    //     .catch((err) => {
-    //       console.log(err);
-    //     })
-    // );
-
   })
   .catch((error) => {
-    spinner.fail('Something went wrong');
+    spinner.fail("Something went wrong");
     console.log(error);
   });
