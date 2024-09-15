@@ -1,3 +1,30 @@
+$fonts:
+  "Thin" normal 100,
+  "ThinItalic" italic 100,
+  "Light" normal 300,
+  "LightItalic" italic 300,
+  "Regular" normal 400,
+  "Italic" italic 400,
+  "Medium" normal 500,
+  "MediumItalic" italic 500,
+  "Bold" normal 700,
+  "BoldItalic" italic 700,
+  "Black" normal 900,
+  "BlackItalic" italic 900;
+
+@each $name, $style, $weight in $fonts {
+  @font-face {
+    font-family: Roboto;
+    src: url('/fonts/roboto/Roboto-#{$name}.ttf') format('truetype');
+    font-style: $style;
+    font-weight: $weight;
+  }
+}
+
+* {
+  font-family: Roboto;
+}
+
 body {
   margin: 0;
   padding: 0;
