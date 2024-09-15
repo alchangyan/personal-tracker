@@ -1,2 +1,14 @@
 .card {
+  color: #b6c2cf;
+  background-color: #22272b;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+  margin-top: 8px;
+  cursor: pointer;
+  border: 2px solid #22272b;
+
+  &:hover {
+    border-color: #ffffff3b;
+  }
 }

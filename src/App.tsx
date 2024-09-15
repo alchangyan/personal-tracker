@@ -3,18 +3,21 @@ import "./App.scss";
 
 const data = [
   {
-    title: "list",
+    title: "List",
     cards: [
       {
-        title: "card",
+        title: "Card",
+      },
+      {
+        title: "Card",
       },
     ],
   },
   {
-    title: "list",
+    title: "List",
     cards: [
       {
-        title: "card",
+        title: "Card",
       },
     ],
   },
@@ -23,9 +26,11 @@ const data = [
 function App() {
   return (
     <div className="app">
-      {data.map((listData, i) => (
-        <List key={i} {...listData} />
-      ))}
+      <div className="content">
+        {data.map((listData, i) => (
+          <List key={i} {...listData} />
+        ))}
+      </div>
     </div>
   );
 }

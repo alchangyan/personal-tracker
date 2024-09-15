@@ -5,8 +5,8 @@ import "./List.scss";
 function List({ title, cards }: List) {
   return (
     <div className="list">
-      <div>{title}</div>
-      <div className="content">
+      <div className="list__title">{title}</div>
+      <div className="list__content">
         {cards.map((cardData, i) => (
           <Card key={i} {...cardData}/>
         ))}
