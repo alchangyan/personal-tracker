@@ -1,14 +1,19 @@
-import Card from '@components/Card';
+import Card from "@components/Card";
+import { useSelector } from "react-redux";
 
 import "./List.scss";
 
-function List({ title, cards }: List) {
+function List({ id, title, cards }: List) {
+  const cardsData = useSelector<RootState, Card[]>((state) =>
+    state.cards.filter(({ id }) => cards.includes(id))
+  );
+
   return (
-    <div className="list">
+    <div className="list" data-id={id}>
       <div className="list__title">{title}</div>
       <div className="list__content">
-        {cards.map((cardData, i) => (
-          <Card key={i} {...cardData}/>
+        {cardsData.map((data, i) => (
+          <Card key={i} {...data}/>
         ))}
       </div>
     </div>
