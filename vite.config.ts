@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src/"),
       "@components": path.resolve(__dirname, "./src/components/"),
+      "@reducers": path.resolve(__dirname, "./src/store/slices/"),
     },
   },
   plugins: [react()],

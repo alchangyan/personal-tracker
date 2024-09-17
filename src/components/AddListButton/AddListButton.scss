@@ -1,10 +1,11 @@
-.list {
+.addListButton {
   background-color: black;
   width: 270px;
   box-sizing: border-box;
   padding: 8px 8px 14px;
   border-radius: 12px;
   margin: 6px;
+  cursor: pointer;
 
   &__title {
     color: #fff;
@@ -13,5 +14,12 @@
     font-weight: 500;
     font-size: 14px;
     color: #b6c2cf;
+
+    display: flex;
+    align-items: center;
+
+    & > svg {
+      margin-right: 10px;
+    }
   }
 }

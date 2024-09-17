@@ -1,35 +1,18 @@
 import List from "@components/List";
+import AddListButton from "@components/AddListButton";
 import "./App.scss";
-
-const data = [
-  {
-    title: "List",
-    cards: [
-      {
-        title: "Card",
-      },
-      {
-        title: "Card",
-      },
-    ],
-  },
-  {
-    title: "List",
-    cards: [
-      {
-        title: "Card",
-      },
-    ],
-  },
-];
+import { useSelector } from "react-redux";
 
 function App() {
+  const lists = useSelector<RootState, List[]>((state) => state.lists);
+
   return (
     <div className="app">
       <div className="content">
-        {data.map((listData, i) => (
+        {lists.map((listData, i) => (
           <List key={i} {...listData} />
         ))}
+        <AddListButton />
       </div>
     </div>
   );

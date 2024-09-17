@@ -5,24 +5,27 @@ import {
   SliceSelectors,
 } from "@reduxjs/toolkit";
 
+const name = 'lists';
+
 const listsSlice = createSlice<
-  any[],
-  SliceCaseReducers<any>,
-  string,
-  SliceSelectors<any>,
-  "todos"
+  List[],
+  SliceCaseReducers<List[]>,
+  typeof name,
+  SliceSelectors<List[]>
 >({
-  name: "todos",
+  name,
   initialState: [],
   reducers: {
-    addList(state, action: PayloadAction<{ title: string }>) {
+    addList(state, action: PayloadAction<string>) {
       state.push({
         id: new Date().getTime(),
-        title: action.payload.title,
+        title: action.payload,
+        cards: [],
       });
     },
   },
 });
 
 export const { addList } = listsSlice.actions;
-export default listsSlice.reducer;
+
+export default listsSlice;
