@@ -1,14 +1,26 @@
 .addListButton {
   background-color: black;
-  width: 270px;
+  border: 2px solid black;
+  width: 250px;
   box-sizing: border-box;
-  padding: 8px 8px 14px;
   border-radius: 12px;
   margin: 6px;
-  cursor: pointer;
+  min-height: 42px;
+
+  &:not(.addListButton_withInput) {
+    padding: 4px 8px 10px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  &_withInput {
+    padding: 8px;
+  }
 
   &__title {
-    color: #fff;
     margin-top: 6px;
     margin-left: 8px;
     font-weight: 500;
@@ -20,6 +32,30 @@
 
     & > svg {
       margin-right: 10px;
+    }
+  }
+
+  &__input-block {
+    display: flex;
+    align-items: center;
+
+    & svg,
+    & input {
+      color: #b6c2cf;
+    }
+    
+    & input {
+      width: 100%;
+      background-color: transparent;
+      font-weight: 500;
+      font-size: 14px;
+
+      &,
+      &:active,
+      &:focus {
+        border: none;
+        outline: none;
+      }
     }
   }
 }

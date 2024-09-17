@@ -1,22 +1,22 @@
 import Card from "@components/Card";
-import { useSelector } from "react-redux";
 
 import "./List.scss";
+import ListWrapper from "../ListWrapper";
 
-function List({ id, title, cards }: List) {
-  const cardsData = useSelector<RootState, Card[]>((state) =>
-    state.cards.filter(({ id }) => cards.includes(id))
-  );
+interface ListProps extends List {}
+
+function List({ id, title, cards }: ListProps) {
+  console.log(cards);
 
   return (
-    <div className="list" data-id={id}>
+    <ListWrapper listId={id}>
       <div className="list__title">{title}</div>
       <div className="list__content">
-        {cardsData.map((data, i) => (
-          <Card key={i} {...data}/>
+        {cards.map((cardId) => (
+          <Card key={cardId} id={cardId} />
         ))}
       </div>
-    </div>
+    </ListWrapper>
   );
 }
 

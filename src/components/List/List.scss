@@ -1,17 +1,7 @@
-.list {
-  background-color: black;
-  width: 270px;
-  box-sizing: border-box;
-  padding: 8px 8px 14px;
-  border-radius: 12px;
-  margin: 6px;
-
-  &__title {
-    color: #fff;
-    margin-top: 6px;
-    margin-left: 8px;
-    font-weight: 500;
-    font-size: 14px;
-    color: #b6c2cf;
-  }
+.list__title {
+  margin-top: 6px;
+  margin-left: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #b6c2cf;
 }
