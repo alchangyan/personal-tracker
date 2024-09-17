@@ -1,7 +1,11 @@
 import "./Card.scss";
 
-function Card({ title }: Card) {
-  return <div className="card">{title}</div>;
+interface CardProps {
+  id: Card["id"];
+}
+
+function Card({ id }: CardProps) {
+  return <div className="card">{id}</div>;
 }
 
 export default Card;
