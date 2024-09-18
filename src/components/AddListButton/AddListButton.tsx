@@ -1,12 +1,14 @@
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaPlus, FaCheck } from "react-icons/fa";
-import cn from "classnames";
+import { FaPlus, FaTimes } from "react-icons/fa";
 
 import { addList } from "@/store/slices/listsSlice";
 
+import ListWrapper from "@components/ListWrapper";
+import Input from "@components/Input";
+import Button from "@components/Button";
+
 import "./AddListButton.scss";
-import ListWrapper from "../ListWrapper";
 
 function AddListButton() {
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -36,7 +38,7 @@ function AddListButton() {
   return (
     <ListWrapper
       listId={0}
-      onClick={!isInputVisible ? toggleinputVisibility : () => {}}
+      onClick={!isInputVisible ? toggleinputVisibility : undefined}
     >
       {!isInputVisible && (
         <div className="addListButton__title">
@@ -46,15 +48,18 @@ function AddListButton() {
       )}
       {isInputVisible && (
         <div className="addListButton__input-block">
-          <input
+          <Input style={{ marginBottom: 6 }} focused placeholder="Enter list name..." />
+          <Button inline style={{ marginRight: 6 }} theme="blue">
+            Add list
+          </Button>
+          <Button inline style={{ marginRight: 6 }} icon={<FaTimes />} onClick={toggleinputVisibility}/>
+          {/* <input
             type="text"
             ref={inputRef}
             onChange={handleChange}
-            placeholder="New List Name"
-          />
-          <div className="addListButton__submit-button" onClick={submitAddList}>
-            <FaCheck />
-          </div>
+          /> */}
+          {/* onClick={submitAddList} */}
+          {/* <FaCheck /> */}
         </div>
       )}
     </ListWrapper>
