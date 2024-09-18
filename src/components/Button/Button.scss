@@ -1,2 +1,38 @@
 .button {
+  height: 32px;
+  min-width: 32px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  
+  &_inline {
+    display: inline-flex;
+  }
+  
+  & span {
+    display: inline-block;
+    padding: 0 12px;
+    font-weight: 500;
+  }
+
+  &_default {
+    color: #b6c2cf;
+
+    &:hover {
+      background-color: #22272b;
+    }
+  }
+
+  &_blue {
+    color: #1d2125;
+    background-color: #579dff;
+
+    &:hover {
+      background-color: #85b8ff;
+    }
+  }
 }
