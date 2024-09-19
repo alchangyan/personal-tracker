@@ -14,7 +14,12 @@ const cardsSlice = createSlice<
   SliceSelectors<Card[]>
 >({
   name,
-  initialState: [],
+  initialState: [
+    {
+      id: 1,
+      title: 'Test'
+    }
+  ],
   reducers: {
     addCard(state, action: PayloadAction<{ title: string }>) {
       state.push({

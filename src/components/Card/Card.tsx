@@ -1,11 +1,12 @@
+import CardWrapper from "../CardWrapper";
 import "./Card.scss";
 
-interface CardProps {
-  id: Card["id"];
-}
-
-function Card({ id }: CardProps) {
-  return <div className="card">{id}</div>;
+function Card({ id, title }: Card) {
+  return (
+    <CardWrapper cardId={id} onClick={() => {}}>
+      <div className="card__title">{title}</div>
+    </CardWrapper>
+  );
 }
 
 export default Card;

@@ -2,22 +2,22 @@ import { type ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
-import { addList } from "@/store/slices/listsSlice";
+import { addCard } from "@/store/slices/cardsSlice";
 
-import ListWrapper from "@components/ListWrapper";
+import CardWrapper from "@components/CardWrapper";
 import Input from "@components/Input";
 import Button from "@components/Button";
 
-import "./AddListButton.scss";
+import "./AddCardButton.scss";
 
-function AddListButton() {
+function AddCardButton() {
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useDispatch();
 
-  function submitAddList() {
-    dispatch(addList(value));
+  function submitAddCard() {
+    dispatch(addCard(value));
     setValue("");
     setIsInputVisible(false);
   }
@@ -37,22 +37,23 @@ function AddListButton() {
   }, [isInputVisible]);
 
   return (
-    <ListWrapper
-      listId={0}
+    <CardWrapper
+      cardId={0}
+      transparent
       onClick={!isInputVisible ? toggleinputVisibility : undefined}
     >
       {!isInputVisible && (
-        <div className="addListButton__title">
+        <div className="addCardButton__title">
           <FaPlus />
-          <span>Add a list...</span>
+          <span>Add a card...</span>
         </div>
       )}
       {isInputVisible && (
-        <div className="addListButton__input-block">
+        <div className="addCardButton__input-block">
           <Input
             style={{ marginBottom: 6 }}
             focused
-            placeholder="Enter list name..."
+            placeholder="Enter card name..."
             value={value}
             onChange={handleChange}
           />
@@ -60,9 +61,9 @@ function AddListButton() {
             inline
             style={{ marginRight: 6 }}
             theme="blue"
-            onClick={submitAddList}
+            onClick={submitAddCard}
           >
-            Add list
+            Add card
           </Button>
           <Button
             inline
@@ -72,8 +73,8 @@ function AddListButton() {
           />
         </div>
       )}
-    </ListWrapper>
+    </CardWrapper>
   );
 }
 
-export default AddListButton;
+export default AddCardButton;
