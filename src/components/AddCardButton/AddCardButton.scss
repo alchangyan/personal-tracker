@@ -1,0 +1,21 @@
+.addCardButton {
+  &__title {
+    padding: 0 10px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #b6c2cf;
+
+    display: flex;
+    align-items: center;
+
+    & > svg {
+      margin-right: 10px;
+    }
+  }
+
+  &__input-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

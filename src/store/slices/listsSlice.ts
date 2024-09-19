@@ -20,7 +20,7 @@ const listsSlice = createSlice<
       state.push({
         id: new Date().getTime(),
         title: action.payload,
-        cards: [],
+        cards: [1],
       });
     },
   },
