@@ -18,18 +18,13 @@ const listsSlice = createSlice<
   reducers: {
     addCardToList(
       state,
-      action: PayloadAction<{ id: List["id"], cardId: Card["id"] }>
+      action: PayloadAction<{ listId: List["id"]; cardId: Card["id"] }>
     ) {
-      console.log(state[0]);
-
-      const indexOfList = state.findIndex(({ id }) => action.payload.id === id);
-      console.log(indexOfList);
+      const indexOfList = state.findIndex(({ id }) => action.payload.listId === id);
 
       state[indexOfList].cards.push(action.payload.cardId);
     },
     addList(state, action: PayloadAction<string>) {
-      console.log(state);
-
       state.push({
         id: new Date().getTime(),
         title: action.payload,

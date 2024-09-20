@@ -1,4 +1,9 @@
-import { type ChangeEvent, useEffect, useRef, useState } from "react";
+import {
+  type ChangeEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useDispatch } from "react-redux";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
@@ -28,7 +33,7 @@ function AddCardButton({ listId }: AddCardButtonProps) {
     };
 
     dispatch(addCard(newCard));
-    dispatch(addCardToList(listId, newCard.id));
+    dispatch(addCardToList({ listId, cardId: newCard.id }));
     setValue("");
     setIsInputVisible(false);
   }
