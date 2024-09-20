@@ -21,11 +21,8 @@ const cardsSlice = createSlice<
     }
   ],
   reducers: {
-    addCard(state, action: PayloadAction<{ title: string }>) {
-      state.push({
-        id: new Date().getTime(),
-        title: action.payload.title,
-      });
+    addCard(state, action: PayloadAction<Card>) {
+      state.push(action.payload);
     },
     getArrayById(state, action) {
       return state.filter(({id}) => action.payload.includes(id))
