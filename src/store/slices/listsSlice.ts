@@ -5,7 +5,7 @@ import {
   SliceSelectors,
 } from "@reduxjs/toolkit";
 
-const name = 'lists';
+const name = "lists";
 
 const listsSlice = createSlice<
   List[],
@@ -16,6 +16,14 @@ const listsSlice = createSlice<
   name,
   initialState: [],
   reducers: {
+    addCardToList(
+      state,
+      action: PayloadAction<{ listId: List["id"]; cardId: Card["id"] }>
+    ) {
+      const indexOfList = state.findIndex(({ id }) => action.payload.listId === id);
+
+      state[indexOfList].cards.push(action.payload.cardId);
+    },
     addList(state, action: PayloadAction<string>) {
       state.push({
         id: new Date().getTime(),
@@ -26,6 +34,6 @@ const listsSlice = createSlice<
   },
 });
 
-export const { addList } = listsSlice.actions;
+export const { addList, addCardToList } = listsSlice.actions;
 
 export default listsSlice;

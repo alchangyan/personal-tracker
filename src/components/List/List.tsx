@@ -22,7 +22,7 @@ function List({ id, title, cards }: ListProps) {
         {currentCards.map((cardData) => (
           <Card key={cardData.id} {...cardData} />
         ))}
-        <AddCardButton />
+        <AddCardButton listId={id}/>
       </div>
     </ListWrapper>
   );
