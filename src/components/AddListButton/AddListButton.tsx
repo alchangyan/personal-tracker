@@ -22,8 +22,12 @@ function AddListButton() {
     setIsInputVisible(false);
   }
 
-  function toggleinputVisibility() {
-    setIsInputVisible((state) => !state);
+  function showInput() {
+    setIsInputVisible(true);
+  }
+
+  function hideInput() {
+    setIsInputVisible(false);
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -39,7 +43,8 @@ function AddListButton() {
   return (
     <ListWrapper
       listId={0}
-      onClick={!isInputVisible ? toggleinputVisibility : undefined}
+      onClickOutside={hideInput}
+      onClick={!isInputVisible ? showInput : undefined}
     >
       {!isInputVisible && (
         <div className="addListButton__title">
@@ -55,6 +60,7 @@ function AddListButton() {
             placeholder="Enter list name..."
             value={value}
             onChange={handleChange}
+            onEnter={submitAddList}
           />
           <Button
             inline
@@ -68,7 +74,7 @@ function AddListButton() {
             inline
             style={{ marginRight: 6 }}
             icon={<FaTimes />}
-            onClick={toggleinputVisibility}
+            onClick={hideInput}
           />
         </div>
       )}

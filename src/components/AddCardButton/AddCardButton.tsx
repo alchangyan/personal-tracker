@@ -38,8 +38,12 @@ function AddCardButton({ listId }: AddCardButtonProps) {
     setIsInputVisible(false);
   }
 
-  function toggleinputVisibility() {
-    setIsInputVisible((state) => !state);
+  function showInput() {
+    setIsInputVisible(true);
+  }
+
+  function hideInput() {
+    setIsInputVisible(false);
   }
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -56,7 +60,8 @@ function AddCardButton({ listId }: AddCardButtonProps) {
     <CardWrapper
       cardId={0}
       transparent
-      onClick={!isInputVisible ? toggleinputVisibility : undefined}
+      onClick={!isInputVisible ? showInput : undefined}
+      onClickOutside={hideInput}
     >
       {!isInputVisible && (
         <div className="addCardButton__title">
@@ -72,6 +77,7 @@ function AddCardButton({ listId }: AddCardButtonProps) {
             placeholder="Enter card name..."
             value={value}
             onChange={handleChange}
+            onEnter={submitAddCard}
           />
           <Button
             inline
@@ -85,7 +91,7 @@ function AddCardButton({ listId }: AddCardButtonProps) {
             inline
             style={{ marginRight: 6 }}
             icon={<FaTimes />}
-            onClick={toggleinputVisibility}
+            onClick={hideInput}
           />
         </div>
       )}

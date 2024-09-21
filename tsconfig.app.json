@@ -23,7 +23,8 @@
     "paths": {
       "@/*": ["./*"],
       "@components/*": ["./components/*"],
-      "@reducers/*": ["./store/slices/*"]
+      "@reducers/*": ["./store/slices/*"],
+      "@utils/*": ["./utils/*"]
     },
   },
   "include": ["src"]

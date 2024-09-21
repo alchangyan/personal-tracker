@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { CSSProperties, ChangeEvent } from "react";
+import type { CSSProperties, ChangeEvent, KeyboardEvent } from "react";
 
 import "./Input.scss";
 
@@ -9,6 +9,7 @@ interface InputProps {
   style?: CSSProperties;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onEnter?: () => void;
 }
 
 function Input({
@@ -17,8 +18,15 @@ function Input({
   style = {},
   value,
   onChange,
+  onEnter = () => {},
 }: InputProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  function handleKeyboardInput(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Enter') {
+      onEnter();
+    }
+  }
 
   useEffect(() => {
     if (focused && inputRef.current) {
@@ -34,6 +42,7 @@ function Input({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onKeyUp={handleKeyboardInput}
       />
     </div>
   );
