@@ -9,6 +9,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src/"),
       "@components": path.resolve(__dirname, "./src/components/"),
       "@reducers": path.resolve(__dirname, "./src/store/slices/"),
+      "@utils": path.resolve(__dirname, "./src/utils/"),
     },
   },
   plugins: [react()],
