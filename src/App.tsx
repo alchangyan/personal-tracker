@@ -1,7 +1,10 @@
-import List from "@components/List";
-import AddListButton from "@components/AddListButton";
-import "./App.scss";
 import { useSelector } from "react-redux";
+
+import AddListButton from "@components/AddListButton";
+import List from "@components/List";
+import Modal from "@/components/Modal";
+
+import "./App.scss";
 
 function App() {
   const lists = useSelector<RootState, List[]>((state) => state.lists);
@@ -14,6 +17,7 @@ function App() {
         ))}
         <AddListButton />
       </div>
+      <Modal />
     </div>
   );
 }
