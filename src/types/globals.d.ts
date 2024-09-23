@@ -13,6 +13,7 @@ declare global {
   interface RootState {
     lists: List[];
     cards: Card[];
+    modal: ModalState;
   }
 }
 
