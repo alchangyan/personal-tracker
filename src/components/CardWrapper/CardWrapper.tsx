@@ -2,8 +2,9 @@ import { useRef } from "react";
 import type { ReactNode } from "react";
 import cn from "classnames";
 
-import "./CardWrapper.scss";
 import useOutsideClick from "@/utils/useOutsideClick";
+
+import "./CardWrapper.scss";
 
 interface CardWrapperProps {
   cardId: number;
