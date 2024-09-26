@@ -20,18 +20,16 @@ function App() {
     const collectionRef = ref(database, "lists");
 
     const fetchData = () => {
-      // Listen for changes in the collection
+      // listen for changes
       onValue(collectionRef, (snapshot) => {
         console.log(typeof snapshot.val());
         
         if (typeof snapshot.val() === 'string') {
-          // console.log(snapshot.val());
           setData(JSON.parse(snapshot.val()));
         }
       });
     };
 
-    // Fetch data when the component mounts
     fetchData();
   }, []);
 
