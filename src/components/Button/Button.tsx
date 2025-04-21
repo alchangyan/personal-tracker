@@ -1,7 +1,7 @@
 import type { ReactElement, CSSProperties } from "react";
 import cn from "classnames";
 
-import "./Button.scss";
+import styles from "./Button.module.scss";
 
 interface ButtonProps {
   inline?: boolean;
@@ -22,9 +22,9 @@ function Button({
 }: ButtonProps) {
   return (
     <div
-      className={cn("button", {
-        button_inline: inline,
-        [`button_${theme}`]: inline,
+      className={cn(styles.button, {
+        [styles.inline]: inline,
+        [styles[theme]]: inline,
       })}
       onClick={onClick}
       style={style}

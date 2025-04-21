@@ -1,15 +1,14 @@
 import { useRef } from "react";
 import type { ReactNode } from "react";
 import cn from "classnames";
+import OutsideClickHandler from "react-outside-click-handler";
 
-import useOutsideClick from "@/utils/useOutsideClick";
-
-import "./CardWrapper.scss";
+import styles from "./CardWrapper.module.scss";
 
 interface CardWrapperProps {
   cardId: number;
   onClick?: () => void;
-  onClickOutside?: () => void;
+  onClickOutside?: (e: MouseEvent) => void;
   transparent?: boolean;
   children: ReactNode;
 }
@@ -17,28 +16,26 @@ interface CardWrapperProps {
 function CardWrapper({
   cardId,
   onClick,
-  onClickOutside,
+  onClickOutside = () => {},
   transparent = false,
   children,
 }: CardWrapperProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  if (onClickOutside) {
-    useOutsideClick(wrapperRef, onClickOutside);
-  }
-
   return (
-    <div
-      ref={wrapperRef}
-      className={cn("cardWrapper", {
-        cardWrapper_clickable: !!onClick,
-        cardWrapper_transparent: transparent,
-      })}
-      card-id={cardId}
-      onClick={onClick}
-    >
-      {children}
-    </div>
+    <OutsideClickHandler onOutsideClick={onClickOutside}>
+      <div
+        ref={wrapperRef}
+        className={cn(styles.cardWrapper, {
+          [styles.clickable]: !!onClick,
+          [styles.transparent]: transparent,
+        })}
+        card-id={cardId}
+        onClick={onClick}
+      >
+        {children}
+      </div>
+    </OutsideClickHandler>
   );
 }
 

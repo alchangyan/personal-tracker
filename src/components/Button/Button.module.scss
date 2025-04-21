@@ -6,10 +6,10 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
   
-  &_inline {
+  &.inline {
     display: inline-flex;
   }
   
@@ -19,7 +19,7 @@
     font-weight: 500;
   }
 
-  &_default {
+  &.default {
     color: #b6c2cf;
 
     &:hover {
@@ -27,7 +27,7 @@
     }
   }
 
-  &_blue {
+  &.blue {
     color: #1d2125;
     background-color: #579dff;
 

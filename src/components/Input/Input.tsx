@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { CSSProperties, ChangeEvent, KeyboardEvent } from "react";
 
-import "./Input.scss";
+import styles from "./Input.module.scss";
 
 interface InputProps {
   placeholder?: string;
@@ -35,7 +35,7 @@ function Input({
   }, [focused]);
 
   return (
-    <div className="input" style={style}>
+    <div className={styles.input} style={style}>
       <input
         type="text"
         ref={inputRef}

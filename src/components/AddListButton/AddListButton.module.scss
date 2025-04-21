@@ -1,5 +1,5 @@
-.addListButton {
-  &__title {
+
+  .title {
     margin-top: 6px;
     margin-left: 8px;
     font-weight: 500;
@@ -14,9 +14,8 @@
     }
   }
 
-  &__input-block {
+  .inputBlock {
     display: flex;
     flex-wrap: wrap;
     padding: 2px 0;
   }
-}

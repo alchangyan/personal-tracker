@@ -14,7 +14,7 @@ import CardWrapper from "@components/CardWrapper";
 import Input from "@components/Input";
 import Button from "@components/Button";
 
-import "./AddCardButton.scss";
+import styles from "./AddCardButton.module.scss";
 
 interface AddCardButtonProps {
   listId: List["id"];
@@ -64,15 +64,15 @@ function AddCardButton({ listId }: AddCardButtonProps) {
       onClickOutside={hideInput}
     >
       {!isInputVisible && (
-        <div className="addCardButton__title">
+        <div className={styles.title}>
           <FaPlus />
           <span>Add a card...</span>
         </div>
       )}
       {isInputVisible && (
-        <div className="addCardButton__input-block">
+        <div className={styles.inputBlock}>
           <Input
-            style={{ marginBottom: 6 }}
+            style={{ marginBottom: 8 }}
             focused
             placeholder="Enter card name..."
             value={value}

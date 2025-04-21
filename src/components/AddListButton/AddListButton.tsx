@@ -8,7 +8,7 @@ import ListWrapper from "@components/ListWrapper";
 import Input from "@components/Input";
 import Button from "@components/Button";
 
-import "./AddListButton.scss";
+import styles from "./AddListButton.module.scss";
 
 function AddListButton() {
   const [isInputVisible, setIsInputVisible] = useState(false);
@@ -47,13 +47,13 @@ function AddListButton() {
       onClick={!isInputVisible ? showInput : undefined}
     >
       {!isInputVisible && (
-        <div className="addListButton__title">
+        <div className={styles.title}>
           <FaPlus />
           <span>Add a list...</span>
         </div>
       )}
       {isInputVisible && (
-        <div className="addListButton__input-block">
+        <div className={styles.inputBlock}>
           <Input
             style={{ marginBottom: 6 }}
             focused

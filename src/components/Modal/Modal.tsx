@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { closeModal } from "@/store/slices/modalSlice";
 
-import "./Modal.scss";
+import styles from './Modal.module.scss'
 
 function Modal() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function Modal() {
   }
 
   return createPortal(
-    open ? <div className="modal-wrapper" onClick={handleCloseModal}/> : null,
+    open ? <div className={styles.modalWrapper} onClick={handleCloseModal}/> : null,
     document.body
   );
 }
