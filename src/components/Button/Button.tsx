@@ -5,15 +5,17 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps {
   inline?: boolean;
+  disabled?: boolean;
   children?: string;
   icon?: ReactElement;
   style?: CSSProperties;
-  theme?: "default" | "blue";
+  theme?: "default" | "blue" | 'light';
   onClick?: () => void;
 }
 
 function Button({
   inline,
+  disabled,
   children,
   icon,
   theme = "default",
@@ -22,9 +24,9 @@ function Button({
 }: ButtonProps) {
   return (
     <div
-      className={cn(styles.button, {
+      className={cn(styles.button, styles[theme], {
         [styles.inline]: inline,
-        [styles[theme]]: inline,
+        [styles.disabled]: disabled,
       })}
       onClick={onClick}
       style={style}

@@ -38,10 +38,10 @@ inquirer
     fs.mkdirSync(`./src/components/${answers.name}`);
 
     const mainContent = `
-      ${answers.scss ? `import "./${answers.name}.scss";` : ""}
+      ${answers.scss ? `import styles from "./${answers.name}.module.scss";` : ""}
 
       function ${answers.name}() {
-        return <div${answers.scss ? ` className="${toCamelCase(answers.name)}"` : ""}>${answers.name}</div>;
+        return <div${answers.scss ? ` className={styles.${toCamelCase(answers.name)}}` : ""}>${answers.name}</div>;
       }
 
       export default ${answers.name};
@@ -60,7 +60,7 @@ inquirer
       );
 
       fs.writeFileSync(
-        `./src/components/${answers.name}/${answers.name}.scss`,
+        `./src/components/${answers.name}/${answers.name}.module.scss`,
         scssFormattedContent
       );
     }

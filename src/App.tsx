@@ -1,24 +1,22 @@
-import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import AddListButton from "@components/AddListButton";
-import List from "@components/List";
 import Modal from "@/components/Modal";
+import Layout from "@/components/Layout";
 
-import styles from "./App.module.scss";
+import Homepage from "@/pages/Homepage";
+import Board from "@/pages/Board";
 
 function App() {
-  const lists = useSelector<RootState, List[]>((state) => state.lists);
-
   return (
-    <div className={styles.app}>
-      <div className={styles.content}>
-        {lists.map((listData, i) => (
-          <List key={i} {...listData} />
-        ))}
-        <AddListButton />
-      </div>
-      <Modal />
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/board/:id" element={<Board />} />
+        </Routes>
+        <Modal />
+      </Layout>
+    </BrowserRouter>
   );
 }
 

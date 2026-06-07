@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import type { ReactNode } from "react";
 import cn from "classnames";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -20,12 +19,9 @@ function CardWrapper({
   transparent = false,
   children,
 }: CardWrapperProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
   return (
     <OutsideClickHandler onOutsideClick={onClickOutside}>
       <div
-        ref={wrapperRef}
         className={cn(styles.cardWrapper, {
           [styles.clickable]: !!onClick,
           [styles.transparent]: transparent,

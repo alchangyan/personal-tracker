@@ -17,9 +17,13 @@ function AddListButton() {
   const dispatch = useDispatch();
 
   function submitAddList() {
-    dispatch(addList(value));
-    setValue("");
-    setIsInputVisible(false);
+    const trimmedValue = value.trim();
+
+    if (trimmedValue) {
+      dispatch(addList(trimmedValue));
+      setValue("");
+      setIsInputVisible(false);
+    }
   }
 
   function showInput() {

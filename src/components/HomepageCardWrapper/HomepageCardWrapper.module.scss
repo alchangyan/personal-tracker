@@ -1,0 +1,18 @@
+.homepageCardWrapper {
+  width: 214px;
+  height: 122px;
+  color: #b6c2cf;
+  background-color: black;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 8px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #579dff;
+  }
+}

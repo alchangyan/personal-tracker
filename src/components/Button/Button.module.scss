@@ -1,5 +1,6 @@
 .button {
   height: 32px;
+  min-height: 32px;
   min-width: 32px;
   box-sizing: border-box;
   display: flex;
@@ -34,5 +35,19 @@
     &:hover {
       background-color: #85b8ff;
     }
+  }
+
+  &.light {
+    color: #a9abaf;
+    background-color: #a9abaf;
+
+    &:hover {
+      background-color: #a9abaf;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }

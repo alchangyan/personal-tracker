@@ -10,10 +10,9 @@ declare global {
     cards: Card['id'][];
   }
 
-  interface RootState {
-    lists: List[];
-    cards: Card[];
-    modal: ModalState;
+  interface Board {
+    _id: string;
+    name: string;
   }
 }
 

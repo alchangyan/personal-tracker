@@ -1,9 +1,4 @@
-import {
-  type ChangeEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { type ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
@@ -27,15 +22,19 @@ function AddCardButton({ listId }: AddCardButtonProps) {
   const dispatch = useDispatch();
 
   function submitAddCard() {
-    const newCard = {
-      id: new Date().getTime(),
-      title: value,
-    };
+    const trimmedValue = value.trim();
 
-    dispatch(addCard(newCard));
-    dispatch(addCardToList({ listId, cardId: newCard.id }));
-    setValue("");
-    setIsInputVisible(false);
+    if (trimmedValue) {
+      const newCard = {
+        id: new Date().getTime(),
+        title: trimmedValue,
+      };
+
+      dispatch(addCard(newCard));
+      dispatch(addCardToList({ listId, cardId: newCard.id }));
+      setValue("");
+      setIsInputVisible(false);
+    }
   }
 
   function showInput() {

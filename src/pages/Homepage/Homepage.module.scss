@@ -1,0 +1,12 @@
+.homepage {
+  padding: 0 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  & > * {
+    margin-right: 8px;
+  }
+}

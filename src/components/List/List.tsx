@@ -1,7 +1,8 @@
+import { useMemo } from "react";
+import { useSelector } from "@/store";
+
 import Card from "@components/Card";
 import ListWrapper from "@components/ListWrapper";
-import { useSelector } from "react-redux";
-import { useMemo } from "react";
 import AddCardButton from "@components/AddCardButton";
 
 import styles from "./List.module.scss";
@@ -13,7 +14,7 @@ interface ListProps {
 }
 
 function List({ id, title, cards }: ListProps) {
-  const stateCards = useSelector<RootState, Card[]>((state) => state.cards);
+  const stateCards = useSelector((state) => state.cards);
 
   const currentCards = useMemo(() => {
     return stateCards.filter(({ id }) => cards.includes(id));

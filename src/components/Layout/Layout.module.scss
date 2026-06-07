@@ -1,0 +1,9 @@
+.layout {
+  background-color: #1f1f21;
+  
+  .content {
+    display: flex;
+    align-items: flex-start;
+    min-height: calc(100vh - 48px);
+  }
+}
