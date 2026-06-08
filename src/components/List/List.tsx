@@ -1,33 +1,18 @@
-import { useMemo } from "react";
-import { useSelector } from "@/store";
-
 import Card from "@components/Card";
 import ListWrapper from "@components/ListWrapper";
 import AddCardButton from "@components/AddCardButton";
 
 import styles from "./List.module.scss";
 
-interface ListProps {
-  id: number;
-  title: string;
-  cards: number[];
-}
-
-function List({ id, title, cards }: ListProps) {
-  const stateCards = useSelector((state) => state.cards);
-
-  const currentCards = useMemo(() => {
-    return stateCards.filter(({ id }) => cards.includes(id));
-  }, [stateCards, cards]);
-
+function List({ _id, name, cards, boardId }: List) {
   return (
-    <ListWrapper listId={id}>
-      <div className={styles.title}>{title}</div>
+    <ListWrapper listId={_id}>
+      <div className={styles.title}>{name}</div>
       <div className={styles.content}>
-        {currentCards.map((cardData) => (
-          <Card key={cardData.id} {...cardData} />
+        {(cards || []).map((cardData) => (
+          <Card key={cardData._id} {...cardData} />
         ))}
-        <AddCardButton listId={id} />
+        <AddCardButton boardId={boardId} listId={_id} />
       </div>
     </ListWrapper>
   );

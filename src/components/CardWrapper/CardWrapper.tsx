@@ -5,7 +5,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 import styles from "./CardWrapper.module.scss";
 
 interface CardWrapperProps {
-  cardId: number;
+  cardId?: string;
   onClick?: () => void;
   onClickOutside?: (e: MouseEvent) => void;
   transparent?: boolean;

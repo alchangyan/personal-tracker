@@ -1,39 +1,56 @@
-import {
-  createSlice,
-  PayloadAction,
-  SliceCaseReducers,
-  SliceSelectors,
-} from "@reduxjs/toolkit";
+import { fetchLists } from "@/api/list";
+
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchListsRequest = createAsyncThunk(
+  "company/fetchLists",
+  async (boardId: string, { rejectWithValue }) => {
+    try {
+      const response = await fetchLists(boardId);
+      return response;
+    } catch (error) {
+      return rejectWithValue(
+        error instanceof Error
+          ? error.message
+          : "Failed to fetch company details"
+      );
+    }
+  }
+);
+
+interface BoardsState {
+  data: List[];
+  error: null | string;
+  loading: boolean;
+}
+
+const initialState: BoardsState = {
+  data: [],
+  error: null,
+  loading: false,
+};
 
 const name = "lists";
 
-const listsSlice = createSlice<
-  List[],
-  SliceCaseReducers<List[]>,
-  typeof name,
-  SliceSelectors<List[]>
->({
+const listsSlice = createSlice({
   name,
-  initialState: [],
-  reducers: {
-    addCardToList(
-      state,
-      action: PayloadAction<{ listId: List["id"]; cardId: Card["id"] }>
-    ) {
-      const indexOfList = state.findIndex(({ id }) => action.payload.listId === id);
-
-      state[indexOfList].cards.push(action.payload.cardId);
-    },
-    addList(state, action: PayloadAction<string>) {
-      state.push({
-        id: new Date().getTime(),
-        title: action.payload,
-        cards: [1],
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchListsRequest.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchListsRequest.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchListsRequest.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
       });
-    },
   },
 });
-
-export const { addList, addCardToList } = listsSlice.actions;
 
 export default listsSlice;

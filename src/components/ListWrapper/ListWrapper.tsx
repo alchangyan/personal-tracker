@@ -5,7 +5,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 import styles from "./ListWrapper.module.scss";
 interface ListWrapperProps {
-  listId: number;
+  listId: string;
   onClick?: () => void;
   onClickOutside?: (e: MouseEvent) => void;
   children: ReactNode;

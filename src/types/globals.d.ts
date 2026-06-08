@@ -1,13 +1,15 @@
 declare global {
   interface Card {
-    id: number;
-    title: string;
+    _id: string;
+    listId: string;
+    name: string;
   }
-  
+
   interface List {
-    id: number;
-    title: string;
-    cards: Card['id'][];
+    _id: string;
+    boardId: string;
+    name: string;
+    cards: Card["id"][];
   }
 
   interface Board {

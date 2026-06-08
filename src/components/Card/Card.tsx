@@ -5,7 +5,7 @@ import { openModal } from "@/store/slices/modalSlice";
 
 import styles from "./Card.module.scss";
 
-function Card({ id, title }: Card) {
+function Card({ _id, name }: Card) {
   const dispatch = useDispatch();
 
   function handleOpenModal() {
@@ -13,8 +13,8 @@ function Card({ id, title }: Card) {
   }
 
   return (
-    <CardWrapper cardId={id} onClick={handleOpenModal}>
-      <div className={styles.title}>{title}</div>
+    <CardWrapper cardId={_id} onClick={handleOpenModal}>
+      <div className={styles.title}>{name}</div>
     </CardWrapper>
   );
 }

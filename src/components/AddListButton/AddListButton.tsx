@@ -1,28 +1,42 @@
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
-import { addList } from "@/store/slices/listsSlice";
+import { createList } from "@/api/list";
 
 import ListWrapper from "@components/ListWrapper";
 import Input from "@components/Input";
 import Button from "@components/Button";
 
+import { fetchListsRequest } from "@/store/slices/listsSlice";
+import { useDispatch } from "@/store";
+
 import styles from "./AddListButton.module.scss";
 
-function AddListButton() {
+interface AddListButtonProps {
+  boardId?: string;
+}
+
+function AddListButton({ boardId }: AddListButtonProps) {
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [value, setValue] = useState("");
+  const dispatch = useDispatch()
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const dispatch = useDispatch();
 
-  function submitAddList() {
-    const trimmedValue = value.trim();
+  async function submitAddList() {
+    if (boardId) {
+      const trimmedValue = value.trim();
 
-    if (trimmedValue) {
-      dispatch(addList(trimmedValue));
-      setValue("");
-      setIsInputVisible(false);
+      if (trimmedValue) {
+        try {
+          await createList({ name: trimmedValue, boardId });
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setValue("");
+          setIsInputVisible(false);
+          dispatch(fetchListsRequest(boardId));
+        }
+      }
     }
   }
 

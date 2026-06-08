@@ -1,9 +1,9 @@
 import { type ChangeEvent, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
-import { addCardToList } from "@/store/slices/listsSlice";
-import { addCard } from "@/store/slices/cardsSlice";
+import { createCard } from "@/api/card";
+import { fetchListsRequest } from "@/store/slices/listsSlice";
+import { useDispatch } from "@/store";
 
 import CardWrapper from "@components/CardWrapper";
 import Input from "@components/Input";
@@ -12,28 +12,34 @@ import Button from "@components/Button";
 import styles from "./AddCardButton.module.scss";
 
 interface AddCardButtonProps {
-  listId: List["id"];
+  listId: List["_id"];
+  boardId: Board["_id"];
 }
 
-function AddCardButton({ listId }: AddCardButtonProps) {
+function AddCardButton({ boardId, listId }: AddCardButtonProps) {
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useDispatch();
 
-  function submitAddCard() {
+  async function submitAddCard() {
     const trimmedValue = value.trim();
 
     if (trimmedValue) {
       const newCard = {
-        id: new Date().getTime(),
-        title: trimmedValue,
+        listId,
+        name: trimmedValue,
       };
 
-      dispatch(addCard(newCard));
-      dispatch(addCardToList({ listId, cardId: newCard.id }));
-      setValue("");
-      setIsInputVisible(false);
+      try {
+        await createCard(newCard);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setValue("");
+        setIsInputVisible(false);
+        dispatch(fetchListsRequest(boardId));
+      }
     }
   }
 
@@ -57,7 +63,6 @@ function AddCardButton({ listId }: AddCardButtonProps) {
 
   return (
     <CardWrapper
-      cardId={0}
       transparent
       onClick={!isInputVisible ? showInput : undefined}
       onClickOutside={hideInput}
