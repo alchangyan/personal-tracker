@@ -26,7 +26,7 @@ function CardWrapper({
           [styles.clickable]: !!onClick,
           [styles.transparent]: transparent,
         })}
-        card-id={cardId}
+        data-id={cardId}
         onClick={onClick}
       >
         {children}

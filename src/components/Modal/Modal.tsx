@@ -1,21 +1,20 @@
+import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
-
-import { useDispatch, useSelector } from "@/store";
-import { closeModal } from "@/store/slices/modalSlice";
 
 import styles from "./Modal.module.scss";
 
-function Modal() {
-  const dispatch = useDispatch();
-  const { open } = useSelector((state) => state.modal);
+export interface ModalProps {
+  open: boolean;
+  onClose: () => void;
+  children?: ReactNode;
+}
 
-  function handleCloseModal() {
-    dispatch(closeModal({}));
-  }
-
+function Modal({ open, onClose, children }: ModalProps) {
   return createPortal(
     open ? (
-      <div className={styles.modalWrapper} onClick={handleCloseModal} />
+      <div className={styles.modalWrapper} onClick={onClose}>
+        {children}
+      </div>
     ) : null,
     document.body
   );

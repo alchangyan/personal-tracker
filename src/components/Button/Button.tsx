@@ -10,7 +10,7 @@ interface ButtonProps {
   children?: string;
   icon?: ReactElement;
   style?: CSSProperties;
-  theme?: "default" | "blue" | "light";
+  theme?: "default" | "blue" | "light" | "red";
   onClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 

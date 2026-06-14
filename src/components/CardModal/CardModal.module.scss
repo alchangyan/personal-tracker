@@ -1,0 +1,20 @@
+.cardModal {
+  display: flex;
+  height: calc(100% - 66px);
+
+  .content {
+    width: 100%;
+  }
+
+  .actions {
+    min-width: 64px;
+    padding: 16px;
+    border-left: 1px solid #969696;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

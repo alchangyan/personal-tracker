@@ -1,0 +1,19 @@
+.modalLayout {
+  width: min(calc(100vw - 160px), 1000px);
+  height: min(calc(100vh - 160px), 1000px);
+  background-color: #242528;
+  border-radius: 16px;
+
+  .heading {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #969696;
+    
+    .title {
+      font-size: 20px;
+    }
+  }
+}

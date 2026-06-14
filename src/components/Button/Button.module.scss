@@ -38,11 +38,20 @@
   }
 
   &.light {
-    color: #a9abaf;
+    color: #1d2125;
     background-color: #a9abaf;
 
     &:hover {
-      background-color: #a9abaf;
+      background-color: #d3d7de;
+    }
+  }
+
+  &.red {
+    color: #fff;
+    background-color: #ff0034;
+
+    &:hover {
+      background-color: #fc4368;
     }
   }
 

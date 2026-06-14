@@ -1,19 +1,14 @@
-import { useDispatch } from "react-redux";
-import CardWrapper from "../CardWrapper";
-
-import { openModal } from "@/store/slices/modalSlice";
+import CardWrapper from "@/components/CardWrapper";
 
 import styles from "./Card.module.scss";
 
-function Card({ _id, name }: Card) {
-  const dispatch = useDispatch();
+interface CardProps extends Card {
+  onClick: () => void;
+}
 
-  function handleOpenModal() {
-    dispatch(openModal({}))
-  }
-
+function Card({ _id, name, onClick }: CardProps) {
   return (
-    <CardWrapper cardId={_id} onClick={handleOpenModal}>
+    <CardWrapper cardId={_id} onClick={onClick}>
       <div className={styles.title}>{name}</div>
     </CardWrapper>
   );

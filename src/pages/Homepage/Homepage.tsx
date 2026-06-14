@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+
 import BoardCard from "@/components/BoardCard";
 import AddBoardCard from "@/components/AddBoardCard";
+import Layout from "@/components/Layout";
 
 import { fetchBoardsRequest } from "@/store/slices/boardsSlice";
 
@@ -17,12 +19,14 @@ function Homepage() {
   }, [dispatch]);
 
   return (
-    <div className={styles.homepage}>
-      {boards.map((boardData, i) => (
-        <BoardCard key={i} {...boardData} />
-      ))}
-      <AddBoardCard />
-    </div>
+    <Layout>
+      <div className={styles.homepage}>
+        {boards.map((boardData, i) => (
+          <BoardCard key={i} {...boardData} />
+        ))}
+        <AddBoardCard />
+      </div>
+    </Layout>
   );
 }
 

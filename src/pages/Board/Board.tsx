@@ -1,35 +1,38 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import AddListButton from "@components/AddListButton";
+import List from "@/components/List";
+import Layout from "@/components/Layout";
 
-import { fetchListsRequest } from "@/store/slices/listsSlice";
+import { fetchListsRequest, resetLists } from "@/store/slices/listsSlice";
 import { useDispatch, useSelector } from "@/store";
 
 import styles from "./Board.module.scss";
-import { useParams } from "react-router-dom";
-import List from "@/components/List";
 
 function Board() {
   const lists = useSelector((state) => state.lists.data);
   const dispatch = useDispatch();
 
-  const { id } = useParams();
+  const { boardId } = useParams();
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchListsRequest(id));
-    }
-  }, [dispatch, id]);
+    dispatch(resetLists());
 
-  console.log(lists);
+    if (boardId) {
+      dispatch(fetchListsRequest(boardId));
+    }
+  }, [dispatch, boardId]);
 
   return (
-    <div className={styles.board}>
-      {lists.map((listData, i) => (
-        <List key={i} {...listData} />
-      ))}
-      <AddListButton boardId={id} />
-    </div>
+    <Layout>
+      <div className={styles.board}>
+        {lists.map((listData, i) => (
+          <List key={i} {...listData} />
+        ))}
+        <AddListButton boardId={boardId} />
+      </div>
+    </Layout>
   );
 }
 

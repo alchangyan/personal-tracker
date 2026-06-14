@@ -35,7 +35,11 @@ const name = "lists";
 const listsSlice = createSlice({
   name,
   initialState,
-  reducers: {},
+  reducers: {
+    resetLists: (state) => {
+      state.data = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchListsRequest.pending, (state) => {
@@ -52,5 +56,7 @@ const listsSlice = createSlice({
       });
   },
 });
+
+export const { resetLists } = listsSlice.actions;
 
 export default listsSlice;
